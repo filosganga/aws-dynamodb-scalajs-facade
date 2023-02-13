@@ -25,6 +25,12 @@ ThisBuild / publishTo := {
   else Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
 ThisBuild / publishMavenStyle := true
+ThisBuild / credentials ++= {
+  for {
+    usr <- sys.env.get("SONATYPE_USER")
+    password <- sys.env.get("SONATYPE_PASS")
+  } yield Credentials("Sonatype Nexus Repository Manager", "s01.oss.sonatype.org", usr, password)
+}.toList
 
 val commonsSettings = List(
   scalacOptions -= "-Xfatal-warnings",
