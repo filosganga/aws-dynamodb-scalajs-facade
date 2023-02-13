@@ -6,7 +6,7 @@ val catsScalacheckV = "0.3.2"
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
 ThisBuild / scalaVersion := "3.2.2"
-ThisBuild / crossScalaVersions := List("2.13.10")
+ThisBuild / crossScalaVersions ++= List("2.13.10")
 ThisBuild / organization := "com.filippodeluca"
 ThisBuild / organizationName := "Filippo De Luca"
 ThisBuild / dynverSeparator := "-"
@@ -29,7 +29,12 @@ ThisBuild / credentials ++= {
   for {
     usr <- sys.env.get("SONATYPE_USER")
     password <- sys.env.get("SONATYPE_PASS")
-  } yield Credentials("Sonatype Nexus Repository Manager", "s01.oss.sonatype.org", usr, password)
+  } yield Credentials(
+    "Sonatype Nexus Repository Manager",
+    "s01.oss.sonatype.org",
+    usr,
+    password
+  )
 }.toList
 
 val commonsSettings = List(
