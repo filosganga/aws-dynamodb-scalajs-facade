@@ -82,7 +82,7 @@ jobs:
           max-annotations: 10
           fail-on-error: true
           name: unit-tests-reports
-          path: "**/client/target/test-reports/*.xml"
+          path: "**/target/test-reports/*.xml"
           reporter: java-junit
 
   publish:

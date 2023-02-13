@@ -17,6 +17,7 @@ ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 
 val commonsSettings = List(
   scalacOptions -= "-Xfatal-warnings",
+  scalacOptions -= "-Wdead-code",
   scalacOptions += "-Xsource:3"
 )
 
