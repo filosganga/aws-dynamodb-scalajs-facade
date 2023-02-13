@@ -10,6 +10,11 @@ on:
 concurrency:
   group: ${{ github.ref }}
 
+permissions:
+  id-token: write
+  contents: read
+  checks: write
+
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
