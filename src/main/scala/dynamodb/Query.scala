@@ -64,18 +64,20 @@ object QueryCommandInput {
     js.Dynamic
       .literal(
         TableName = TableName,
-        IndexName = IndexName,
-        ConsistentRead = ConsistentRead,
-        Select = Select,
-        KeyConditionExpression = KeyConditionExpression,
-        ProjectionExpression = ProjectionExpression,
-        FilterExpression = FilterExpression,
-        ExpressionAttributeNames = ExpressionAttributeNames,
-        ExpressionAttributeValues = ExpressionAttributeValues,
-        ExclusiveStartKey = ExclusiveStartKey,
-        Limit = Limit,
-        ScanIndexForward = ScanIndexForward,
-        ReturnConsumedCapacity = ReturnConsumedCapacity
+        IndexName = IndexName.asInstanceOf[js.Any],
+        ConsistentRead = ConsistentRead.asInstanceOf[js.Any],
+        Select = Select.asInstanceOf[js.Any],
+        KeyConditionExpression = KeyConditionExpression.asInstanceOf[js.Any],
+        ProjectionExpression = ProjectionExpression.asInstanceOf[js.Any],
+        FilterExpression = FilterExpression.asInstanceOf[js.Any],
+        ExpressionAttributeNames =
+          ExpressionAttributeNames.asInstanceOf[js.Any],
+        ExpressionAttributeValues =
+          ExpressionAttributeValues.asInstanceOf[js.Any],
+        ExclusiveStartKey = ExclusiveStartKey.asInstanceOf[js.Any],
+        Limit = Limit.asInstanceOf[js.Any],
+        ScanIndexForward = ScanIndexForward.asInstanceOf[js.Any],
+        ReturnConsumedCapacity = ReturnConsumedCapacity.asInstanceOf[js.Any]
       )
       .asInstanceOf[QueryCommandInput]
   }

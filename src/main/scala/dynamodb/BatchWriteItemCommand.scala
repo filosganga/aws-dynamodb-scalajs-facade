@@ -33,8 +33,9 @@ object BatchWriteItemCommandInput {
   ) = js.Dynamic
     .literal(
       RequestItems = RequestItems,
-      ReturnConsumedCapacity = ReturnConsumedCapacity,
-      ReturnItemCollectionMetrics = ReturnItemCollectionMetrics
+      ReturnConsumedCapacity = ReturnConsumedCapacity.asInstanceOf[js.Any],
+      ReturnItemCollectionMetrics =
+        ReturnItemCollectionMetrics.asInstanceOf[js.Any]
     )
     .asInstanceOf[BatchWriteItemCommandInput]
 
@@ -60,8 +61,8 @@ object WriteRequest {
   ): WriteRequest = {
     js.Dynamic
       .literal(
-        PutRequest = PutRequest,
-        DeleteRequest = DeleteRequest
+        PutRequest = PutRequest.asInstanceOf[js.Any],
+        DeleteRequest = DeleteRequest.asInstanceOf[js.Any]
       )
       .asInstanceOf[WriteRequest]
   }

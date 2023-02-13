@@ -5,40 +5,6 @@ import scalajs.js
 import scalajs.js._
 import scalajs.js.annotation.JSImport
 
-/** export interface Logger { trace?: (...content: any[]) => void; debug:
-  * (...content: any[]) => void; info: (...content: any[]) => void; warn:
-  * (...content: any[]) => void; error: (...content: any[]) => void; }
-  */
-
-//     /**
-//  * A function that, when invoked, returns a promise that will be fulfilled with
-//  * a value of type T.
-//  *
-//  * @example A function that reads credentials from shared SDK configuration
-//  * files, assuming roles and collecting MFA tokens as necessary.
-//  */
-// export interface Provider<T> {
-//   (): Promise<T>;
-// }
-
-// /**
-//  * A function that, when invoked, returns a promise that will be fulfilled with
-//  * a value of type T. It memoizes the result from the previous invocation
-//  * instead of calling the underlying resources every time.
-//  *
-//  * You can force the provider to refresh the memoized value by invoke the
-//  * function with optional parameter hash with `forceRefresh` boolean key and
-//  * value `true`.
-//  *
-//  * @example A function that reads credentials from IMDS service that could
-//  * return expired credentials. The SDK will keep using the expired credentials
-//  * until an unretryable service error requiring a force refresh of the
-//  * credentials.
-//  */
-// export interface MemoizedProvider<T> {
-//   (options?: { forceRefresh?: boolean }): Promise<T>;
-// }
-
 @js.native
 @JSImport("@aws-sdk/client-dynamodb", "DynamoDBClient")
 class DynamoDBClient(configuration: DynamoDBClientConfig) extends js.Object {
@@ -84,16 +50,17 @@ object DynamoDBClientConfig {
       // logger: js.UndefOr[Logger] = js.undefined
 
   ): DynamoDBClientConfig = {
+
     js.Dynamic
       .literal(
-        region = region.merge.asInstanceOf[js.Any],
-        credentials = credentials.merge.asInstanceOf[js.Any],
-        endpoint = endpoint,
-        customUserAgent = customUserAgent,
-        maxAttempts = maxAttempts,
-        disableHostPrefix = disableHostPrefix,
-        endpointCacheSize = endpointCacheSize,
-        endpointDiscoveryEnabled = endpointDiscoveryEnabled
+        region = region.asInstanceOf[js.Any],
+        credentials = credentials.asInstanceOf[js.Any],
+        endpoint = endpoint.asInstanceOf[js.Any],
+        customUserAgent = customUserAgent.asInstanceOf[js.Any],
+        maxAttempts = maxAttempts.asInstanceOf[js.Any],
+        disableHostPrefix = disableHostPrefix.asInstanceOf[js.Any],
+        endpointCacheSize = endpointCacheSize.asInstanceOf[js.Any],
+        endpointDiscoveryEnabled = endpointDiscoveryEnabled.asInstanceOf[js.Any]
       )
       .asInstanceOf[DynamoDBClientConfig]
   }
@@ -124,8 +91,8 @@ object AttributeDefinition {
       AttributeType: js.UndefOr[ScalarAttributeType] = js.undefined
   ): AttributeDefinition = js.Dynamic
     .literal(
-      AttributeName = AttributeName,
-      AttributeType = AttributeType
+      AttributeName = AttributeName.asInstanceOf[js.Any],
+      AttributeType = AttributeType.asInstanceOf[js.Any]
     )
     .asInstanceOf[AttributeDefinition]
 }
@@ -160,8 +127,8 @@ object KeySchemaElement {
       KeyType: js.UndefOr[KeyType] = js.undefined
   ): KeySchemaElement = js.Dynamic
     .literal(
-      AttributeName = AttributeName,
-      KeyType = KeyType
+      AttributeName = AttributeName.asInstanceOf[js.Any],
+      KeyType = KeyType.asInstanceOf[js.Any]
     )
     .asInstanceOf[KeySchemaElement]
 }
@@ -185,7 +152,7 @@ object GlobalSecondaryIndex {
       IndexName = IndexName,
       KeySchema = KeySchema,
       Projection = Projection,
-      ProvisionedThroughput = ProvisionedThroughput
+      ProvisionedThroughput = ProvisionedThroughput.asInstanceOf[js.Any]
     )
     .asInstanceOf[GlobalSecondaryIndex]
 }
@@ -232,7 +199,7 @@ object StreamSpecification {
   ): StreamSpecification = js.Dynamic
     .literal(
       StreamEnabled = StreamEnabled,
-      StreamViewType = StreamViewType
+      StreamViewType = StreamViewType.asInstanceOf[js.Any]
     )
     .asInstanceOf[StreamSpecification]
 }

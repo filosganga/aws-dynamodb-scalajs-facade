@@ -5,15 +5,26 @@ val catsScalacheckV = "0.3.2"
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
-ThisBuild / scalaVersion := "2.13.10"
-ThisBuild / organization := "com.kaluza.kapi"
-ThisBuild / organizationName := "Kaluza Ltd"
+ThisBuild / scalaVersion := "3.2.2"
+ThisBuild / crossScalaVersions := List("2.13.10")
+ThisBuild / organization := "com.filippodeluca"
+ThisBuild / organizationName := "Filippo De Luca"
 ThisBuild / dynverSeparator := "-"
 ThisBuild / resolvers += "Sonatype Public" at "https://oss.sonatype.org/content/groups/public/"
 ThisBuild / evictionErrorLevel := Level.Warn
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
 ThisBuild / semanticdbEnabled := true
 ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
+ThisBuild / dynverSonatypeSnapshots := true
+
+ThisBuild / pomIncludeRepository := { _ => false }
+ThisBuild / publishTo := {
+  val nexus = "https://s01.oss.sonatype.org/"
+  if (isSnapshot.value)
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else Some("releases" at nexus + "service/local/staging/deploy/maven2")
+}
+ThisBuild / publishMavenStyle := true
 
 val commonsSettings = List(
   scalacOptions -= "-Xfatal-warnings",

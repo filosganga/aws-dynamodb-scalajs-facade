@@ -26,12 +26,14 @@ object BatchGetItemCommandInput {
   def apply(
       RequestItems: js.Dictionary[KeysAndAttributes],
       ReturnConsumedCapacity: js.UndefOr[ReturnConsumedCapacity] = js.undefined
-  ) = js.Dynamic
-    .literal(
-      RequestItems = RequestItems,
-      ReturnConsumedCapacity = ReturnConsumedCapacity
-    )
-    .asInstanceOf[BatchGetItemCommandInput]
+  ) = {
+    js.Dynamic
+      .literal(
+        RequestItems = RequestItems,
+        ReturnConsumedCapacity = ReturnConsumedCapacity.asInstanceOf[js.Any]
+      )
+      .asInstanceOf[BatchGetItemCommandInput]
+  }
 
 }
 
@@ -54,9 +56,9 @@ object KeysAndAttributes {
     js.Dynamic
       .literal(
         Keys = Keys,
-        ConsistentRead = ConsistentRead,
-        ProjectionExpression = ProjectionExpression,
-        ExpressionAttributeNames = ExpressionAttributeNames
+        ConsistentRead = ConsistentRead.asInstanceOf[js.Any],
+        ProjectionExpression = ProjectionExpression.asInstanceOf[js.Any],
+        ExpressionAttributeNames = ExpressionAttributeNames.asInstanceOf[js.Any]
       )
       .asInstanceOf[KeysAndAttributes]
   }

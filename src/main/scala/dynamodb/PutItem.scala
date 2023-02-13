@@ -89,12 +89,15 @@ object PutItemCommandInput {
       .literal(
         TableName = TableName,
         Item = Item,
-        ConditionExpression = ConditionExpression,
-        ExpressionAttributeNames = ExpressionAttributeNames,
-        ExpressionAttributeValues = ExpressionAttributeValues,
-        ReturnConsumedCapacity = ReturnConsumedCapacity,
-        ReturnItemCollectionMetrics = ReturnItemCollectionMetrics,
-        ReturnValues = ReturnValues
+        ConditionExpression = ConditionExpression.asInstanceOf[js.Any],
+        ExpressionAttributeNames =
+          ExpressionAttributeNames.asInstanceOf[js.Any],
+        ExpressionAttributeValues =
+          ExpressionAttributeValues.asInstanceOf[js.Any],
+        ReturnConsumedCapacity = ReturnConsumedCapacity.asInstanceOf[js.Any],
+        ReturnItemCollectionMetrics =
+          ReturnItemCollectionMetrics.asInstanceOf[js.Any],
+        ReturnValues = ReturnValues.asInstanceOf[js.Any]
       )
       .asInstanceOf[PutItemCommandInput]
   }

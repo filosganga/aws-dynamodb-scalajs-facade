@@ -39,11 +39,12 @@ object GetItemCommandInput {
     js.Dynamic
       .literal(
         TableName = TableName,
-        ConsistentRead = ConsistentRead,
-        ExpressionAttributeNames = ExpressionAttributeNames,
+        ConsistentRead = ConsistentRead.asInstanceOf[js.Any],
+        ExpressionAttributeNames =
+          ExpressionAttributeNames.asInstanceOf[js.Any],
         Key = Key,
-        ProjectionExpression = ProjectionExpression,
-        ReturnConsumedCapacity = ReturnConsumedCapacity
+        ProjectionExpression = ProjectionExpression.asInstanceOf[js.Any],
+        ReturnConsumedCapacity = ReturnConsumedCapacity.asInstanceOf[js.Any]
       )
       .asInstanceOf[GetItemCommandInput]
   }

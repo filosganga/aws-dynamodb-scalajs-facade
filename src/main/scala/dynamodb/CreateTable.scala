@@ -56,12 +56,12 @@ object CreateTableCommandInput {
       TableName = TableName,
       AttributeDefinitions = AttributeDefinitions,
       KeySchema = KeySchema,
-      BillingMode = BillingMode,
-      GlobalSecondaryIndexes = GlobalSecondaryIndexes,
-      LocalSecondaryIndexes = LocalSecondaryIndexes,
-      ProvisionedThroughput = ProvisionedThroughput,
-      StreamSpecification = StreamSpecification,
-      TableClass = TableClass
+      BillingMode = BillingMode.asInstanceOf[js.Any],
+      GlobalSecondaryIndexes = GlobalSecondaryIndexes.asInstanceOf[js.Any],
+      LocalSecondaryIndexes = LocalSecondaryIndexes.asInstanceOf[js.Any],
+      ProvisionedThroughput = ProvisionedThroughput.asInstanceOf[js.Any],
+      StreamSpecification = StreamSpecification.asInstanceOf[js.Any],
+      TableClass = TableClass.asInstanceOf[js.Any]
     )
     .asInstanceOf[CreateTableCommandInput]
 }
