@@ -1,8 +1,6 @@
 package com.filippodeluca.jsfacade.aws
 package dynamodb
 
-import cats.effect._
-
 import scalajs.js
 
 class GetItemTest extends munit.CatsEffectSuite with DynamoDbFixtures {

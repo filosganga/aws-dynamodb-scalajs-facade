@@ -2,10 +2,8 @@ package com.filippodeluca.jsfacade.aws
 package dynamodb
 
 import cats.syntax.all._
-import cats.effect._
 
 import scalajs.js
-import scalajs.js.JSConverters._
 
 class PutItemTest
     extends munit.CatsEffectSuite

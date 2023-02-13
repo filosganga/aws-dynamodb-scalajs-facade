@@ -2,7 +2,6 @@ package com.filippodeluca.jsfacade.aws
 package dynamodb
 
 import scalajs.js
-import scalajs.js._
 import scalajs.js.annotation.JSImport
 
 @js.native

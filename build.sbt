@@ -2,7 +2,6 @@ val munitV = "1.0.0-M7"
 val scalacheckEffectV = "2.0.0-M2"
 val munitCatsEffectV = "2.0.0-M3"
 val catsScalacheckV = "0.3.2"
-val dynosaurV = "0.3.0-28-b99089c"
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
@@ -30,7 +29,6 @@ lazy val dynamodbJsFacade = project
     scalaJSUseMainModuleInitializer := false,
     Compile / npmDependencies += "@aws-sdk/client-dynamodb" -> "3.267.0",
     libraryDependencies ++= List(
-      "org.systemfw" %%% "dynosaur-core" % dynosaurV,
       "org.scalameta" %%% "munit" % munitV % Test,
       "org.scalameta" %%% "munit-scalacheck" % munitV % Test,
       "org.typelevel" %%% "munit-cats-effect" % munitCatsEffectV % Test,

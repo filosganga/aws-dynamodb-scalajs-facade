@@ -1,12 +1,9 @@
 package com.filippodeluca.jsfacade.aws
 package dynamodb
 
-import cats.syntax.all._
-import cats.effect.std.Env
 import cats.effect._
-import cats.effect.syntax.all._
+import cats.effect.std.Env
 
-import scalajs.js
 import scalajs.js.JSConverters._
 
 trait DynamoDbFixtures {
