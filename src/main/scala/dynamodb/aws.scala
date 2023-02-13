@@ -21,10 +21,10 @@ object Credentials {
       SessionToken: js.UndefOr[String] = js.undefined
   ): Credentials = js.Dynamic
     .literal(
-      AccessKeyId = AccessKeyId,
-      Expiration = Expiration,
-      SecretAccessKey = SecretAccessKey,
-      SessionToken = SessionToken
+      AccessKeyId = AccessKeyId.asInstanceOf[js.Any],
+      Expiration = Expiration.asInstanceOf[js.Any],
+      SecretAccessKey = SecretAccessKey.asInstanceOf[js.Any],
+      SessionToken = SessionToken.asInstanceOf[js.Any]
     )
     .asInstanceOf[Credentials]
 }
@@ -38,7 +38,7 @@ object MemoizedProviderOptions {
   def apply(forceRefresh: js.UndefOr[Boolean]): MemoizedProviderOptions =
     js.Dynamic
       .literal(
-        forceRefresh = forceRefresh
+        forceRefresh = forceRefresh.asInstanceOf[js.Any]
       )
       .asInstanceOf[MemoizedProviderOptions]
 
