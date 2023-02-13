@@ -52,6 +52,10 @@ jobs:
     needs: build
     env:
       DYNAMODB_ENDPOINT: "http://localhost:8000"
+      AWS_REGION: "eu-west-1"
+      AWS_ACCESS_KEY_ID: AKIAIOSFODNN7EXAMPLE
+      AWS_SECRET_ACCESS_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+
     services:
       dynamodb:
         image: amazon/dynamodb-local:1.21.0
