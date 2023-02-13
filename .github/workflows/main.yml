@@ -125,5 +125,5 @@ jobs:
           name: ${{ steps.tag-version.outputs.new_version }}
           body: ${{ steps.tag-version.outputs.changelog }}
       - run: git fetch --tags
-      - run: gpg --list-secret-keys
+      - run: echo ${{ secrets.GPG_KEY }} | base64 --decode | gpg  --batch --import
       - run: sbt +publishSigned
