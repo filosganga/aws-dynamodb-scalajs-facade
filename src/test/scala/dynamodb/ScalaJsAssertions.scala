@@ -125,4 +125,20 @@ trait ScalaJsAssertions {
     }
   }
 
+  implicit def compareForJsArray[A](implicit
+      compare: munit.Compare[A, A]
+  ): munit.Compare[js.Array[A], js.Array[A]] =
+    new munit.Compare[js.Array[A], js.Array[A]] {
+      def isEqual(obtained: js.Array[A], expected: js.Array[A]): Boolean = {
+        println("Comparing js.Array")
+        if (expected.size != obtained.size) {
+          false
+        } else {
+          expected.zip(obtained).foldLeft(true) { case (acc, (b, a)) =>
+            acc && compare.isEqual(a, b)
+          }
+        }
+      }
+    }
+
 }

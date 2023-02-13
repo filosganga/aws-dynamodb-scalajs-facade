@@ -99,17 +99,29 @@ object DynamoDBClientConfig {
   }
 }
 
+sealed trait ScalarAttributeType extends js.Any
+object ScalarAttributeType {
+  val B = "B".asInstanceOf[ScalarAttributeType]
+  val N = "N".asInstanceOf[ScalarAttributeType]
+  val S = "S".asInstanceOf[ScalarAttributeType]
+}
+
+sealed trait KeyType extends js.Any
+object KeyType {
+  val Hash = "HASH".asInstanceOf[KeyType]
+  val Range = "RANGE".asInstanceOf[KeyType]
+}
+
 @js.native
 trait AttributeDefinition extends js.Object {
   val AttributeName: js.UndefOr[String] = js.native
-  val AttributeType: js.UndefOr[String] =
-    js.native // TODO it is actually ScalarAttributeType | String but ScalarAttributeType is an enumeration of "B", "N", "S" I have no idea how to implement it
+  val AttributeType: js.UndefOr[ScalarAttributeType] = js.native
 }
 
 object AttributeDefinition {
   def apply(
       AttributeName: js.UndefOr[String] = js.undefined,
-      AttributeType: js.UndefOr[String] = js.undefined
+      AttributeType: js.UndefOr[ScalarAttributeType] = js.undefined
   ): AttributeDefinition = js.Dynamic
     .literal(
       AttributeName = AttributeName,
@@ -139,15 +151,13 @@ object ProvisionedThroughput {
 @js.native
 trait KeySchemaElement extends js.Object {
   val AttributeName: js.UndefOr[String] = js.native
-
-  /** HASH | RANGE */
-  val KeyType: js.UndefOr[String] = js.native
+  val KeyType: js.UndefOr[KeyType] = js.native
 }
 
 object KeySchemaElement {
   def apply(
       AttributeName: js.UndefOr[String] = js.undefined,
-      KeyType: js.UndefOr[String] = js.undefined
+      KeyType: js.UndefOr[KeyType] = js.undefined
   ): KeySchemaElement = js.Dynamic
     .literal(
       AttributeName = AttributeName,
@@ -201,31 +211,24 @@ object LocalSecondaryIndex {
     .asInstanceOf[LocalSecondaryIndex]
 }
 
+sealed trait StreamViewType extends js.Any
+object StreamViewType {
+  val KeysOnly = "KEYS_ONLY".asInstanceOf[StreamViewType]
+  val NewImage = "NEW_IMAGE".asInstanceOf[StreamViewType]
+  val OldImage = "OLD_IMAGE".asInstanceOf[StreamViewType]
+  val NewAndOldImages = "NEW_AND_OLD_IMAGES".asInstanceOf[StreamViewType]
+}
+
 @js.native
 trait StreamSpecification extends js.Object {
   val StreamEnabled: Boolean = js.native
-
-  /** KEYS_ONLY - Only the key attributes of the modified item are written to
-    * the stream.
-    *
-    * NEW_IMAGE - The entire item, as it appears after it was modified, is
-    * written to the stream.
-    *
-    * OLD_IMAGE - The entire item, as it appeared before it was modified, is
-    * written to the stream.
-    *
-    * NEW_AND_OLD_IMAGES - Both the new and the old item images of the item are
-    * written to the stream.
-    *
-    * @return
-    */
-  val StreamViewType: js.UndefOr[String] = js.native
+  val StreamViewType: js.UndefOr[StreamViewType] = js.native
 }
 
 object StreamSpecification {
   def apply(
       StreamEnabled: Boolean,
-      StreamViewType: js.UndefOr[String] = js.undefined
+      StreamViewType: js.UndefOr[StreamViewType] = js.undefined
   ): StreamSpecification = js.Dynamic
     .literal(
       StreamEnabled = StreamEnabled,
@@ -268,14 +271,14 @@ trait ItemCollectionMetrics extends js.Object {
 }
 
 @js.native
-trait ReturnValues extends js.Any
+sealed trait ReturnValues extends js.Any
 object ReturnValues {
   val None = "NONE".asInstanceOf[ReturnValues]
   val AllOld = "ALL_OLD".asInstanceOf[ReturnValues]
 }
 
 @js.native
-trait ReturnConsumedCapacity extends js.Any
+sealed trait ReturnConsumedCapacity extends js.Any
 object ReturnConsumedCapacity {
   val Indexes = "INDEXES".asInstanceOf[ReturnConsumedCapacity]
   val Total = "TOTAL".asInstanceOf[ReturnConsumedCapacity]
@@ -283,7 +286,7 @@ object ReturnConsumedCapacity {
 }
 
 @js.native
-trait ReturnItemCollectionMetrics extends js.Any
+sealed trait ReturnItemCollectionMetrics extends js.Any
 object ReturnItemCollectionMetrics {
   val Size = "SIZE".asInstanceOf[ReturnItemCollectionMetrics]
   val None = "NONE".asInstanceOf[ReturnItemCollectionMetrics]
@@ -328,4 +331,10 @@ object AttributeValue {
     js.Dynamic.literal(NS = value).asInstanceOf[AttributeValue]
   def BS(value: js.Array[Uint8Array]): AttributeValue =
     js.Dynamic.literal(BS = value).asInstanceOf[AttributeValue]
+}
+
+sealed trait BillingMode extends js.Any
+object BillingMode {
+  val Provisioned = "PROVISIONED".asInstanceOf[BillingMode]
+  val PayPerRequest = "PAY_PER_REQUEST".asInstanceOf[BillingMode]
 }

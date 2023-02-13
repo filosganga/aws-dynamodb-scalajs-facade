@@ -49,7 +49,7 @@ trait DynamoDbFixtures {
               TableName = tableName,
               AttributeDefinitions = attributeDefinitions.toJSArray,
               KeySchema = keySchema.toJSArray,
-              BillingMode = "PAY_PER_REQUEST",
+              BillingMode = BillingMode.PayPerRequest,
               GlobalSecondaryIndexes =
                 globalSecondaryIndexes.map(_.toJSArray).orUndefined,
               LocalSecondaryIndexes =
@@ -69,11 +69,16 @@ trait DynamoDbFixtures {
   def simpleTableR(client: DynamoDBClient, hashKeyName: String) = tableR(
     client
   )(
-    List(AttributeDefinition(AttributeName = hashKeyName, AttributeType = "S")),
+    List(
+      AttributeDefinition(
+        AttributeName = hashKeyName,
+        AttributeType = ScalarAttributeType.S
+      )
+    ),
     List(
       KeySchemaElement(
         AttributeName = hashKeyName,
-        KeyType = "HASH"
+        KeyType = KeyType.Hash
       )
     )
   )

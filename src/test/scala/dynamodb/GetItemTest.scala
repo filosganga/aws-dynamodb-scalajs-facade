@@ -3,7 +3,10 @@ package dynamodb
 
 import scalajs.js
 
-class GetItemTest extends munit.CatsEffectSuite with DynamoDbFixtures {
+class GetItemTest
+    extends munit.CatsEffectSuite
+    with DynamoDbFixtures
+    with ScalaJsAssertions {
 
   ResourceFunFixture {
     for {
@@ -56,11 +59,12 @@ class GetItemTest extends munit.CatsEffectSuite with DynamoDbFixtures {
       } yield item)
         .map(_.Item)
         .map { item =>
-          js.JSON.stringify(item)
+          assert(item.isDefined)
+          assertEquals(
+            item.get,
+            js.Dictionary("id" -> AttributeValue.S("test"))
+          )
         }
-        .assertEquals(
-          js.JSON.stringify(js.Dictionary("id" -> AttributeValue.S("test")))
-        )
 
   }
 

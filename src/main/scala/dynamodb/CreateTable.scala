@@ -21,9 +21,8 @@ trait CreateTableCommandInput extends js.Object {
   def AttributeDefinitions: js.Array[AttributeDefinition] =
     js.native
 
-  /** PROVISIONED or PAY_PER_REQUEST */
-  def BillingMode: js.UndefOr[String] =
-    js.native // TODO BillingMode | string but BillingMode is an enum
+  def BillingMode: js.UndefOr[BillingMode] =
+    js.native
   def GlobalSecondaryIndexes: js.UndefOr[js.Array[GlobalSecondaryIndex]] =
     js.native
   def KeySchema: js.Array[KeySchemaElement] = js.native
@@ -44,7 +43,7 @@ object CreateTableCommandInput {
       TableName: String,
       AttributeDefinitions: js.Array[AttributeDefinition],
       KeySchema: js.Array[KeySchemaElement],
-      BillingMode: js.UndefOr[String] = js.undefined,
+      BillingMode: js.UndefOr[BillingMode] = js.undefined,
       GlobalSecondaryIndexes: js.UndefOr[js.Array[GlobalSecondaryIndex]] =
         js.undefined,
       LocalSecondaryIndexes: js.UndefOr[js.Array[LocalSecondaryIndex]] =
