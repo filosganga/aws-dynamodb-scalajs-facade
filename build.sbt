@@ -37,6 +37,30 @@ ThisBuild / credentials ++= {
   )
 }.toList
 
+ThisBuild / developers := List(
+  Developer(
+    id = "filosganga",
+    name = "Filippo De Luca",
+    email = "me@filippodeluca.com",
+    url = url("https://github.com/filosganga")
+  )
+)
+
+ThisBuild / licenses := List(
+  License.Apache2
+)
+
+ThisBuild / homepage := Some(
+  url("https://github.com/filosganga/dynamodb-js-facade")
+)
+
+ThisBuild / scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/filosganga/dynamodb-js-facade"),
+    "scm:git@github.com:filosganga/dynamodb-js-facade.git"
+  )
+)
+
 val commonsSettings = List(
   scalacOptions -= "-Xfatal-warnings",
   scalacOptions -= "-Wdead-code",
