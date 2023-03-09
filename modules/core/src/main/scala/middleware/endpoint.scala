@@ -1,10 +1,9 @@
-package com.filippodeluca.jsfacade.awssdkv
+package com.filippodeluca.jsfacade.awssdk
 package middleware
 
+import com.filippodeluca.jsfacade.awssdk.config.resolver.UseFipsEndpoint
+import com.filippodeluca.jsfacade.awssdk.types._
 import scalajs.js
-
-import com.filippodeluca.jsfacade.awssdkv.types._
-import com.filippodeluca.jsfacade.awssdkv.config.resolver.UseFipsEndpoint
 
 object endpoint {
 
@@ -27,9 +26,12 @@ object endpoint {
       * Endpoint transformations such as S3 applying a bucket to the hostname
       * are still applicable to this custom endpoint.
       */
-    val endpoint: js.UndefOr[String | Endpoint | Provider[
-      Endpoint
-    ] | EndpointV2 | Provider[EndpointV2]] = js.native
+    val endpoint: js.UndefOr[
+      String | Endpoint |
+        Provider[
+          Endpoint
+        ] | EndpointV2 | Provider[EndpointV2]
+    ] = js.native
 
     /** Providing a custom endpointProvider will override built-in
       * transformations of the endpoint such as S3 adding the bucket name to the

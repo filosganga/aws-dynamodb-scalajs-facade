@@ -1,18 +1,17 @@
-package com.filippodeluca.jsfacade.awssdkv
+package com.filippodeluca.jsfacade.awssdk
 package client
 package dynamodb
 
+import com.filippodeluca.jsfacade.awssdk.config.resolver.RegionInputConfig
+import com.filippodeluca.jsfacade.awssdk.middleware.endpoint._
+import com.filippodeluca.jsfacade.awssdk.middleware.retry.RetryInputConfig
+import com.filippodeluca.jsfacade.awssdk.middleware.signing.AwsAuthInputConfig
+import com.filippodeluca.jsfacade.awssdk.middleware.userAgent.UserAgentInputConfig
+import com.filippodeluca.jsfacade.awssdk.types._
+import com.filippodeluca.jsfacade.awssdk.types.identity._
 import scalajs.js
 import scalajs.js._
 import scalajs.js.annotation.JSImport
-
-import com.filippodeluca.jsfacade.awssdkv.types._
-import com.filippodeluca.jsfacade.awssdkv.middleware.endpoint._
-import com.filippodeluca.jsfacade.awssdkv.types.identity._
-import com.filippodeluca.jsfacade.awssdkv.middleware.userAgent.UserAgentInputConfig
-import com.filippodeluca.jsfacade.awssdkv.middleware.signing.AwsAuthInputConfig
-import com.filippodeluca.jsfacade.awssdkv.middleware.retry.RetryInputConfig
-import com.filippodeluca.jsfacade.awssdkv.config.resolver.RegionInputConfig
 
 @js.native
 @JSImport("@aws-sdk/client-dynamodb", "DynamoDBClient")

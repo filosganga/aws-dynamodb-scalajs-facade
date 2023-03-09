@@ -1,11 +1,10 @@
-package com.filippodeluca.jsfacade.awssdkv
+package com.filippodeluca.jsfacade.awssdk
 package client
 package dynamodb
 
 import cats.syntax.all._
 
 import scalajs.js
-
 import models._
 
 trait ScalaJsAssertions {

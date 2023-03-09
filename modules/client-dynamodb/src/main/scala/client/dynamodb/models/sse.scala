@@ -1,11 +1,11 @@
-package com.filippodeluca.jsfacade.awssdkv
+package com.filippodeluca.jsfacade.awssdk
 package client
 package dynamodb
 package models
 
+import com.filippodeluca.jsfacade.awssdk.types.MetadataBearer
 import scalajs.js
 import scalajs.js.annotation.JSImport
-import com.filippodeluca.jsfacade.awssdkv.types.MetadataBearer
 
 @js.native
 sealed trait SSEType extends js.Any

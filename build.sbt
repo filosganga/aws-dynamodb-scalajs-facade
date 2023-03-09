@@ -89,7 +89,7 @@ lazy val core = project
   .in(file("modules/core"))
   .enablePlugins(ScalaJSPlugin, ScalaJSBundlerPlugin)
   .settings(
-    name := "scalajs-awssdkv-types",
+    name := "scalajs-awssdk-types",
     commonsSettings,
     testSettings,
     scalaJSUseMainModuleInitializer := false,
@@ -106,7 +106,7 @@ lazy val clientDynamodb = project
   .enablePlugins(ScalaJSPlugin, ScalaJSBundlerPlugin)
   .dependsOn(core)
   .settings(
-    name := "scalajs-awssdkv-client-dynamodb",
+    name := "scalajs-awssdk-client-dynamodb",
     commonsSettings,
     testSettings,
     scalaJSUseMainModuleInitializer := false,
@@ -118,7 +118,7 @@ lazy val clientS3 = project
   .enablePlugins(ScalaJSPlugin, ScalaJSBundlerPlugin)
   .dependsOn(core)
   .settings(
-    name := "scalajs-awssdkv-client-s3",
+    name := "scalajs-awssdk-client-s3",
     commonsSettings,
     testSettings,
     scalaJSUseMainModuleInitializer := false,
@@ -130,7 +130,7 @@ lazy val clientSes = project
   .enablePlugins(ScalaJSPlugin, ScalaJSBundlerPlugin)
   .dependsOn(core)
   .settings(
-    name := "scalajs-awssdkv-client-ses",
+    name := "scalajs-awssdk-client-ses",
     commonsSettings,
     testSettings,
     scalaJSUseMainModuleInitializer := false,
@@ -142,7 +142,7 @@ lazy val clientKinesis = project
   .enablePlugins(ScalaJSPlugin, ScalaJSBundlerPlugin)
   .dependsOn(core)
   .settings(
-    name := "scalajs-awssdkv-client-kinesis",
+    name := "scalajs-awssdk-client-kinesis",
     commonsSettings,
     testSettings,
     scalaJSUseMainModuleInitializer := false,

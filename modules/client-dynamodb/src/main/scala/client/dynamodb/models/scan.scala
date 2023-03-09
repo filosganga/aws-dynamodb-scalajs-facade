@@ -1,13 +1,12 @@
-package com.filippodeluca.jsfacade.awssdkv
+package com.filippodeluca.jsfacade.awssdk
 package client
 package dynamodb
 package models
 
+import com.filippodeluca.jsfacade.awssdk.types.MetadataBearer
 import scalajs.js
 import scalajs.js.annotation.JSImport
 import scalajs.js.typedarray.Uint8Array
-
-import com.filippodeluca.jsfacade.awssdkv.types.MetadataBearer
 
 /** <p>Represents the input of a <code>Scan</code> operation.</p>
   */

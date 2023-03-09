@@ -1,4 +1,4 @@
-package com.filippodeluca.jsfacade.awssdkv
+package com.filippodeluca.jsfacade.awssdk
 package client
 package dynamodb
 
@@ -7,7 +7,6 @@ import cats.effect.std.Env
 import cats.syntax.all._
 
 import scalajs.js.JSConverters._
-
 import models._
 import commands._
 

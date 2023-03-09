@@ -1,9 +1,8 @@
-package com.filippodeluca.jsfacade.awssdkv
+package com.filippodeluca.jsfacade.awssdk
 package middleware
 
+import com.filippodeluca.jsfacade.awssdk.types._
 import scalajs.js
-
-import com.filippodeluca.jsfacade.awssdkv.types._
 
 object retry {
 

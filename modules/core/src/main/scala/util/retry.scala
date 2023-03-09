@@ -1,10 +1,9 @@
-package com.filippodeluca.jsfacade.awssdkv
+package com.filippodeluca.jsfacade.awssdk
 package util
 
+import com.filippodeluca.jsfacade.awssdk.types._
 import scalajs.js
 import scalajs.js.annotation.JSImport
-
-import com.filippodeluca.jsfacade.awssdkv.types._
 
 object retry {
 

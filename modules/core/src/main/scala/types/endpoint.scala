@@ -1,4 +1,4 @@
-package com.filippodeluca.jsfacade.awssdkv.types
+package com.filippodeluca.jsfacade.awssdk.types
 
 import scalajs.js
 
@@ -8,11 +8,8 @@ trait EndpointV2 extends js.Any {
 
   val headers: js.Dictionary[js.Array[String]] = js.native
 
-  /** export type EndpointObjectProperty =
-    * \| string
-    * \| boolean
-    * \| { [key: string]: EndpointObjectProperty }
-    * \| EndpointObjectProperty[];
+  /** export type EndpointObjectProperty = \| string \| boolean \| { [key:
+    * string]: EndpointObjectProperty } \| EndpointObjectProperty[];
     *
     * Typescript type: properties?: { authSchemes?: AuthScheme[]; } &
     * Record<string, EndpointObjectProperty>;
@@ -20,6 +17,5 @@ trait EndpointV2 extends js.Any {
   val properties: js.UndefOr[js.Object] = js.native
 
 }
-
 
 type EndpointParameters = js.Dictionary[js.UndefOr[String | Boolean]]

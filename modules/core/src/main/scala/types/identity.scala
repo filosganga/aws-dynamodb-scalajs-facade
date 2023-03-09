@@ -1,4 +1,4 @@
-package com.filippodeluca.jsfacade.awssdkv.types
+package com.filippodeluca.jsfacade.awssdk.types
 package identity
 
 import scalajs.js

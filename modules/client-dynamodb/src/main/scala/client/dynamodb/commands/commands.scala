@@ -1,14 +1,12 @@
-package com.filippodeluca.jsfacade.awssdkv
+package com.filippodeluca.jsfacade.awssdk
 package client
 package dynamodb
 package commands
 
+import com.filippodeluca.jsfacade.awssdk.client.dynamodb.models._
+import com.filippodeluca.jsfacade.awssdk.types.{MetadataBearer, ResponseMetadata}
 import scalajs.js
 import scalajs.js.annotation.JSImport
-
-import com.filippodeluca.jsfacade.awssdkv.types.MetadataBearer
-import com.filippodeluca.jsfacade.awssdkv.types.ResponseMetadata
-import com.filippodeluca.jsfacade.awssdkv.client.dynamodb.models._
 
 @js.native
 @JSImport("@aws-sdk/client-dynamodb", "BatchGetItemCommand")

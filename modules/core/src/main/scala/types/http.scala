@@ -1,4 +1,4 @@
-package com.filippodeluca.jsfacade.awssdkv.types
+package com.filippodeluca.jsfacade.awssdk.types
 
 import scalajs.js
 
@@ -41,4 +41,3 @@ trait HttpResponse extends HttpMessage {
 trait HttpHandlerOptions extends js.Any {
   val abortSignal: js.UndefOr[AbortSignal] = js.native;
 }
-
