@@ -740,7 +740,7 @@ object ReturnValues {
 sealed trait ReturnValue extends js.Any
 object ReturnValue {
   val AllNew = "ALL_NEW".asInstanceOf[ReturnValue]
-  val AllNld = "ALL_OLD".asInstanceOf[ReturnValue]
+  val AllOld = "ALL_OLD".asInstanceOf[ReturnValue]
   val None = "NONE".asInstanceOf[ReturnValue]
   val UpdatedNew = "UPDATED_NEW".asInstanceOf[ReturnValue]
   val UpdatedOld = "UPDATED_OLD".asInstanceOf[ReturnValue]

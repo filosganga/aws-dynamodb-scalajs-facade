@@ -42,24 +42,24 @@ object DefaultsMode {
 @js.native
 trait DynamoDBClientConfig
     extends js.Object
-    // with AwsAuthInputConfig
-    // with EndpointInputConfig
-    // with EndpointDiscoveryInputConfig
-    // with UserAgentInputConfig
-    // with RetryInputConfig
+    with AwsAuthInputConfig
+    with EndpointInputConfig
+    with EndpointDiscoveryInputConfig
+    with UserAgentInputConfig
+    with RetryInputConfig
     with RegionInputConfig {
 
-  // val defaultsMode: js.UndefOr[DefaultsMode | Provider[DefaultsMode]] =
-  //   js.native
+  val defaultsMode: js.UndefOr[DefaultsMode | Provider[DefaultsMode]] =
+    js.native
 
-  // val disableHostPrefix: js.UndefOr[Boolean] = js.native
+  val disableHostPrefix: js.UndefOr[Boolean] = js.native
 
-  // val retryMode: js.UndefOr[String | Int] = js.native
+  val retryMode: js.UndefOr[String | Int] = js.native
 
-  // val logger: js.UndefOr[Logger] = js.native
+  val logger: js.UndefOr[Logger] = js.native
 
   // TODO https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/interfaces/dynamodbclientconfig.html#requesthandler
-  // val requestHandler: js.UndefOr[js.Any] = js.native
+  val requestHandler: js.UndefOr[js.Any] = js.native
 }
 
 object DynamoDBClientConfig {
@@ -93,35 +93,32 @@ object DynamoDBClientConfig {
       systemClockOffset: js.UndefOr[Int] = js.undefined
   ): DynamoDBClientConfig = {
 
-    val foo = js.Dynamic.literal("foo" -> "foo")
+    val properties = Map(
+      "region" -> region.asInstanceOf[js.Any],
+      "useFipsEndpoint" -> useFipsEndpoint.asInstanceOf[js.Any],
+      "defaultsMode" -> defaultsMode.asInstanceOf[js.Any],
+      "credentials" -> credentials.asInstanceOf[js.Any],
+      "endpoint" -> endpoint.asInstanceOf[js.Any],
+      "endpointProvider" -> endpointProvider.asInstanceOf[js.Any],
+      "customUserAgent" -> customUserAgent.asInstanceOf[js.Any],
+      "maxAttempts" -> maxAttempts.asInstanceOf[js.Any],
+      "disableHostPrefix" -> disableHostPrefix.asInstanceOf[js.Any],
+      "endpointCacheSize" -> endpointCacheSize.asInstanceOf[js.Any],
+      "endpointDiscoveryEnabled" -> endpointDiscoveryEnabled
+        .asInstanceOf[js.Any],
+      "useDualstackEndpoint" -> useDualstackEndpoint.asInstanceOf[js.Any],
+      "logger" -> logger.asInstanceOf[js.Any],
+      "retryMode" -> retryMode.asInstanceOf[js.Any],
+      "retryStrategy" -> retryStrategy.asInstanceOf[js.Any],
+      "signer" -> signer.asInstanceOf[js.Any],
+      "signingRegion" -> signingRegion.asInstanceOf[js.Any],
+      "signingEscapePath" -> signingEscapePath.asInstanceOf[js.Any],
+      "systemClockOffset" -> systemClockOffset.asInstanceOf[js.Any]
+    ).view.filter { case (k, v) => !js.isUndefined(v) }.toList
 
-    def toEntry[A](name: String, x: js.UndefOr[A]): List[(String, js.Any)] =
-      x.fold(List.empty[(String, js.Any)]) { x =>
-        List(name -> x.asInstanceOf[js.Any])
-      }
+    js.Dynamic
+      .literal(properties: _*)
+      .asInstanceOf[DynamoDBClientConfig]
 
-    val entries = List(
-      toEntry("region", region),
-      toEntry("useFipsEndpoint", useFipsEndpoint),
-      // toEntry("defaultsMode", defaultsMode),
-      toEntry("credentials", credentials),
-      toEntry("endpoint", endpoint),
-      toEntry("endpointProvider", endpointProvider),
-      toEntry("customUserAgent", customUserAgent),
-      toEntry("maxAttempts", maxAttempts),
-      toEntry("disableHostPrefix", disableHostPrefix),
-      toEntry("endpointCacheSize", endpointCacheSize),
-      toEntry("endpointDiscoveryEnabled", endpointDiscoveryEnabled),
-      toEntry("useDualstackEndpoint", useDualstackEndpoint),
-      toEntry("logger", logger),
-      toEntry("retryMode", retryMode),
-      toEntry("retryStrategy", retryStrategy),
-      toEntry("signer", signer),
-      toEntry("signingRegion", signingRegion),
-      toEntry("signingEscapePath", signingEscapePath),
-      toEntry("systemClockOffset", systemClockOffset)
-    ).flatten
-
-    js.Dictionary(entries: _*).asInstanceOf[DynamoDBClientConfig]
   }
 }
