@@ -1,8 +1,8 @@
-val munitV = "1.0.0-M7"
+val munitV = "1.0.0-M8"
 val scalacheckEffectV = "2.0.0-M2"
 val munitCatsEffectV = "2.0.0-M3"
 val catsScalacheckV = "0.3.2"
-val catsEffectV = "3.4.6"
+val catsEffectV = "3.5.1"
 
 val awsSdkJsV = "3.267.0"
 
