@@ -2,10 +2,6 @@ package com.filippodeluca.jsfacade.awssdk.types
 
 import scalajs.js
 
-type HeaderBag = js.Dictionary[String]
-
-type QueryParameterBag = js.Dictionary[String | js.Array[String] | Null]
-
 @js.native
 trait Headers extends js.Map[String, String] {
   def withHeader(headerName: String, headerValue: String): Headers = js.native
@@ -28,7 +24,7 @@ trait Endpoint extends js.Any {
 }
 
 @js.native
-trait HttpRequest extends HttpMessage, Endpoint {
+trait HttpRequest extends HttpMessage with Endpoint {
   val method: String = js.native
 }
 

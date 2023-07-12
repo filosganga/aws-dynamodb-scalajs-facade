@@ -3,9 +3,7 @@ package client
 package dynamodb
 package models
 
-import com.filippodeluca.jsfacade.awssdk.types.MetadataBearer
 import scalajs.js
-import scalajs.js.annotation.JSImport
 
 @js.native
 sealed trait SSEType extends js.Any

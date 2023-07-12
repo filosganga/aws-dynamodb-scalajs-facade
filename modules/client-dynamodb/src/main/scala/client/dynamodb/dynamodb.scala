@@ -113,10 +113,10 @@ object DynamoDBClientConfig {
       "signingRegion" -> signingRegion.asInstanceOf[js.Any],
       "signingEscapePath" -> signingEscapePath.asInstanceOf[js.Any],
       "systemClockOffset" -> systemClockOffset.asInstanceOf[js.Any]
-    ).view.filter { case (k, v) => !js.isUndefined(v) }.toList
+    ).view.filter { case (_, v) => !js.isUndefined(v) }.toList
 
-    js.Dynamic
-      .literal(properties: _*)
+    js.Dynamic.literal
+      .applyDynamic("apply")(properties: _*)
       .asInstanceOf[DynamoDBClientConfig]
 
   }

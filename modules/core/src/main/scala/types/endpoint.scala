@@ -17,5 +17,3 @@ trait EndpointV2 extends js.Any {
   val properties: js.UndefOr[js.Object] = js.native
 
 }
-
-type EndpointParameters = js.Dictionary[js.UndefOr[String | Boolean]]

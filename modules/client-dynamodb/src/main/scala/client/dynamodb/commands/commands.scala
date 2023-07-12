@@ -4,10 +4,6 @@ package dynamodb
 package commands
 
 import com.filippodeluca.jsfacade.awssdk.client.dynamodb.models._
-import com.filippodeluca.jsfacade.awssdk.types.{
-  MetadataBearer,
-  ResponseMetadata
-}
 import scalajs.js
 import scalajs.js.annotation.JSImport
 

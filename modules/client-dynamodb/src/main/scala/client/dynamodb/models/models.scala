@@ -5,7 +5,6 @@ package models
 
 import com.filippodeluca.jsfacade.awssdk.types.MetadataBearer
 import scalajs.js
-import scalajs.js.annotation.JSImport
 import scalajs.js.typedarray.Uint8Array
 
 sealed trait ScalarAttributeType extends js.Any

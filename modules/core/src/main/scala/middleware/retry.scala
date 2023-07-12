@@ -3,6 +3,7 @@ package middleware
 
 import com.filippodeluca.jsfacade.awssdk.types._
 import scalajs.js
+import scalajs.js.|
 
 object retry {
 

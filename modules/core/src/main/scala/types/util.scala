@@ -166,6 +166,3 @@ trait UserAgentPair extends js.Any {
   val version: js.UndefOr[String] = js.native
 }
 
-/** User agent data that to be put into the request's user agent.
-  */
-type UserAgent = js.Array[UserAgentPair]

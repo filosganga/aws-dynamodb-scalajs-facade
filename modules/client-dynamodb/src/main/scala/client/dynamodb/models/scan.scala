@@ -5,8 +5,6 @@ package models
 
 import com.filippodeluca.jsfacade.awssdk.types.MetadataBearer
 import scalajs.js
-import scalajs.js.annotation.JSImport
-import scalajs.js.typedarray.Uint8Array
 
 /** <p>Represents the input of a <code>Scan</code> operation.</p>
   */

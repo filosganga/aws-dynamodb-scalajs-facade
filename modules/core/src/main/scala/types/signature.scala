@@ -3,11 +3,6 @@ package com.filippodeluca.jsfacade.awssdk.types
 import scalajs.js
 import scalajs.js.typedarray.Uint8Array
 
-/** A {Date} object, a unix (epoch) timestamp in seconds, or a string that can
-  * be understood by the JavaScript {Date} constructor.
-  */
-type DateInput = Double | String | js.Date;
-
 @js.native
 trait SigningArguments extends js.Any {
 
