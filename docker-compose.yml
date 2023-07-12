@@ -5,3 +5,9 @@ services:
     ports:
       - "8000:8000"
     command: "-jar DynamoDBLocal.jar -inMemory"
+
+  sns:
+    image: s12v/sns:0.4.1
+    ports:
+      - "9911:9911"
+    

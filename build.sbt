@@ -54,13 +54,13 @@ ThisBuild / licenses := List(
 )
 
 ThisBuild / homepage := Some(
-  url("https://github.com/filosganga/dynamodb-js-facade")
+  url("https://github.com/filosganga/scalajs-awssdk")
 )
 
 ThisBuild / scmInfo := Some(
   ScmInfo(
-    url("https://github.com/filosganga/dynamodb-js-facade"),
-    "scm:git@github.com:filosganga/dynamodb-js-facade.git"
+    url("https://github.com/filosganga/scalajs-awssdk"),
+    "scm:git@github.com:filosganga/scalajs-awssdk.git"
   )
 )
 
@@ -83,7 +83,7 @@ val testSettings = List(
 
 lazy val root = project
   .in(file("."))
-  .aggregate(core, clientDynamodb, clientS3, clientSes, clientKinesis)
+  .aggregate(core, clientDynamodb, clientS3, clientSes, clientKinesis, clientSns)
 
 lazy val core = project
   .in(file("modules/core"))
@@ -147,4 +147,16 @@ lazy val clientKinesis = project
     testSettings,
     scalaJSUseMainModuleInitializer := false,
     Compile / npmDependencies += "@aws-sdk/client-kinesis" -> awsSdkJsV
+  )
+
+lazy val clientSns = project
+  .in(file("modules/client-sns"))
+  .enablePlugins(ScalaJSPlugin, ScalaJSBundlerPlugin)
+  .dependsOn(core)
+  .settings(
+    name := "scalajs-awssdk-client-sns",
+    commonsSettings,
+    testSettings,
+    scalaJSUseMainModuleInitializer := false,
+    Compile / npmDependencies += "@aws-sdk/client-sns" -> awsSdkJsV
   )
