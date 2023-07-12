@@ -165,4 +165,3 @@ trait UserAgentPair extends js.Any {
   val name: String = js.native
   val version: js.UndefOr[String] = js.native
 }
-

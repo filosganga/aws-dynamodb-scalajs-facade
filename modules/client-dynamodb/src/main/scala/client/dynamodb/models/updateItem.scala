@@ -6,7 +6,6 @@ package models
 import com.filippodeluca.jsfacade.awssdk.types.MetadataBearer
 import scalajs.js
 
-
 /** <p>Represents the input of an <code>UpdateItem</code> operation.</p>
   */
 @js.native
