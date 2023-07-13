@@ -6,7 +6,6 @@ import cats.effect.IO
 import cats.syntax.all._
 
 import scalajs.js
-
 import models._
 import commands._
 

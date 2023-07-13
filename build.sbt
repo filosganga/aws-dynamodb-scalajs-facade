@@ -15,7 +15,6 @@ ThisBuild / organizationName := "Filippo De Luca"
 ThisBuild / dynverSeparator := "-"
 ThisBuild / resolvers += "Sonatype Public" at "https://oss.sonatype.org/content/groups/public/"
 ThisBuild / evictionErrorLevel := Level.Warn
-ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
 ThisBuild / semanticdbEnabled := true
 ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 ThisBuild / dynverSonatypeSnapshots := true
@@ -83,7 +82,14 @@ val testSettings = List(
 
 lazy val root = project
   .in(file("."))
-  .aggregate(core, clientDynamodb, clientS3, clientSes, clientKinesis, clientSns)
+  .aggregate(
+    core,
+    clientDynamodb,
+    clientS3,
+    clientSes,
+    clientKinesis,
+    clientSns
+  )
 
 lazy val core = project
   .in(file("modules/core"))
