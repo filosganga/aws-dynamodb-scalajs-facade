@@ -44,7 +44,7 @@ trait DynamoDbFixtures {
   ) =
     Resource
       .eval(IO { new java.util.Random().nextInt })
-      .map(id => s"table-${id.toString}")
+      .map(id => s"test-${id.toString}")
       .flatMap { tableName =>
         Resource.make {
 
