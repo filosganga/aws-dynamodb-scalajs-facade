@@ -14,11 +14,17 @@ trait SnsFixtures {
   self: munit.FunSuite =>
 
   implicit class RichSNSClient(client: SNSClient) {
-    def sendIO[Input, Output](cmd: Command[Input, Output]) = IO.fromPromise {
-      IO {
-        client.send(cmd)
+    def sendIO[Input, Output](cmd: Command[Input, Output]) = IO
+      .fromPromise {
+        IO {
+          client.send(cmd)
+        }
       }
-    }
+      .onError { e =>
+        cats.effect.std
+          .Console[IO]
+          .errorln(s"Error sending SNS request: ${e.getMessage}")
+      }
 
   }
 
@@ -38,7 +44,7 @@ trait SnsFixtures {
 
   def topicR(client: SNSClient) = Resource
     .eval(IO { new java.util.Random().nextInt.abs })
-    .map(id => s"topic-${id.toString}")
+    .map(id => s"test-${id.toString}")
     .flatMap { topicName =>
       Resource
         .make {
