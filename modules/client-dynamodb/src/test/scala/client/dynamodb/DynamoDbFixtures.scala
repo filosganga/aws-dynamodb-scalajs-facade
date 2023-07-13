@@ -2,6 +2,9 @@ package com.filippodeluca.jsfacade.awssdk
 package client
 package dynamodb
 
+import java.util.concurrent.TimeoutException
+import scala.concurrent.duration._
+
 import cats.effect._
 import cats.effect.std.Env
 import cats.syntax.all._
@@ -14,11 +17,17 @@ trait DynamoDbFixtures {
   self: munit.FunSuite =>
 
   implicit class RichDynamoDbClient(client: DynamoDBClient) {
-    def sendIO[Input, Output](cmd: Command[Input, Output]) = IO.fromPromise {
-      IO {
-        client.send(cmd)
+    def sendIO[Input, Output](cmd: Command[Input, Output]) = IO
+      .fromPromise {
+        IO {
+          client.send(cmd)
+        }
       }
-    }
+      .onError { e =>
+        cats.effect.std
+          .Console[IO]
+          .errorln(s"Error sending DynamoDb request: ${e.getMessage}")
+      }
 
   }
 
@@ -43,25 +52,61 @@ trait DynamoDbFixtures {
       localSecondaryIndexes: Option[List[LocalSecondaryIndex]] = None
   ) =
     Resource
-      .eval(IO { new java.util.Random().nextInt })
-      .map(id => s"table-${id.toString}")
+      .eval(IO { new java.util.Random().nextInt.abs })
+      .map(id => s"test-${id.toString}")
       .flatMap { tableName =>
         Resource.make {
 
-          val command = CreateTableCommand(
-            CreateTableCommandInput(
-              TableName = tableName,
-              AttributeDefinitions = attributeDefinitions.toJSArray,
-              KeySchema = keySchema.toJSArray,
-              BillingMode = BillingMode.PayPerRequest,
-              GlobalSecondaryIndexes =
-                globalSecondaryIndexes.map(_.toJSArray).orUndefined,
-              LocalSecondaryIndexes =
-                localSecondaryIndexes.map(_.toJSArray).orUndefined
-            )
-          )
+          def waitForTbleToBecomeActive(timeout: FiniteDuration): IO[Unit] = {
 
-          client.sendIO(command).as(tableName)
+            val pause = 5.seconds
+
+            val checkTableIsActive = client
+              .sendIO(
+                DescribeTableCommand(
+                  DescribeTableCommandInput(TableName = tableName)
+                )
+              )
+              .map(
+                _.Table.exists(_.TableStatus.exists(_ == TableStatus.Active))
+              )
+
+            checkTableIsActive.ifM(
+              IO.unit,
+              if (timeout <= Duration.Zero) {
+                IO.raiseError[Unit](
+                  new TimeoutException(
+                    s"Table ${tableName} did not become active in time"
+                  )
+                )
+              } else {
+                IO.sleep(pause) >> waitForTbleToBecomeActive(
+                  timeout - pause // This is a bit sloppy but it is ok
+                )
+              }
+            )
+          }
+
+          val createTable = client
+            .sendIO(
+              CreateTableCommand(
+                CreateTableCommandInput(
+                  TableName = tableName,
+                  AttributeDefinitions = attributeDefinitions.toJSArray,
+                  KeySchema = keySchema.toJSArray,
+                  BillingMode = BillingMode.PayPerRequest,
+                  GlobalSecondaryIndexes =
+                    globalSecondaryIndexes.map(_.toJSArray).orUndefined,
+                  LocalSecondaryIndexes =
+                    localSecondaryIndexes.map(_.toJSArray).orUndefined
+                )
+              )
+            )
+            .as(tableName)
+
+          createTable >> waitForTbleToBecomeActive(30.seconds) >> tableName
+            .pure[IO]
+
         } { tableName =>
           val command = DeleteTableCommand(
             DeleteTableCommandInput(TableName = tableName)
